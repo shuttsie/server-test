@@ -7,12 +7,12 @@ const { MONGODB } = require('./config.js');
 
 const pubsub = new PubSub();
 
-const PORT = process.env.port || 5000;
+const PORT = process.env.PORT || 5000;
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => ({ req, pubsub })
+  context: ({ req }) => ({ req, pubsub }),
 });
 
 mongoose
@@ -24,6 +24,6 @@ mongoose
   .then((res) => {
     console.log(`Server running at ${res.url}`);
   })
-  .catch(err => {
-    console.error(err)
-  })
+  .catch((err) => {
+    console.error(err);
+  });
